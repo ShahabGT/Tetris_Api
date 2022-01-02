@@ -5,7 +5,6 @@
     android:layout_height="wrap_content"
     android:paddingStart="20dp"
     android:paddingTop="10dp"
-    android:background="@color/purple_200"
     android:paddingEnd="20dp">
 
     <com.google.android.material.textview.MaterialTextView
@@ -14,7 +13,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,8 +25,7 @@
         android:src="@drawable/vector_retry"
         app:layout_constraintBottom_toBottomOf="@id/row_pairs_error"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/row_pairs_error"
-        app:tint="@color/black" />
+        app:layout_constraintTop_toTopOf="@id/row_pairs_error" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/row_pairs_loading"
