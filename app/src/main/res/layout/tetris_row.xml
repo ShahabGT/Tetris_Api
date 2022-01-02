@@ -4,12 +4,22 @@
     style="?attr/materialCardViewFilledStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/row_tetris_root"
     android:layout_margin="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/row_tetris_wiki"
+            android:textColor="@color/md_theme_light_error"
+            style="@style/TextAppearance.AppCompat.Caption"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/repo_no_wiki"
+            android:gravity="start"
+            android:padding="8dp" />
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/row_tetris_avatar"

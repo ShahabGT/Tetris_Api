@@ -1,7 +1,7 @@
 package ir.shahabazimi.tetrisapi.adapters
 
-import android.content.res.Resources
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import ir.shahabazimi.tetrisapi.R
 import ir.shahabazimi.tetrisapi.databinding.TetrisRowBinding
 import ir.shahabazimi.tetrisapi.models.TetrisItem
-import reactor.util.context.Context
 
 class TetrisAdapter : PagingDataAdapter<TetrisItem, TetrisAdapter.ViewHolder>(PAIR_COMPARATOR) {
     companion object {
@@ -26,9 +25,33 @@ class TetrisAdapter : PagingDataAdapter<TetrisItem, TetrisAdapter.ViewHolder>(PA
 
     inner class ViewHolder(private val v: TetrisRowBinding) : RecyclerView.ViewHolder(v.root) {
         fun bind(model: TetrisItem) {
+            val ctx = v.root.context
+            if (model.has_wiki) {
+                v.rowTetrisRoot.setCardBackgroundColor(
+                    ctx.resources.getColor(
+                        R.color.md_theme_light_secondaryContainer,
+                        null
+                    )
+                )
+                v.rowTetrisWiki.visibility = View.GONE
+            } else {
+                v.rowTetrisRoot.setCardBackgroundColor(
+                    ctx.resources.getColor(
+                        R.color.md_theme_light_errorContainer,
+                        null
+                    )
+                )
+                v.rowTetrisWiki.visibility = View.VISIBLE
+            }
+
             v.rowTetrisName.text = model.name
-            v.rowTetrisLoginName.text = v.root.context.getString(R.string.repo_dev,model.owner.login)
-            v.rowTetrisRepoSize.text = v.root.context.getString(R.string.repo_size,model.size)
+
+            v.rowTetrisLoginName.text =
+                ctx.getString(R.string.repo_dev, model.owner.login)
+
+            v.rowTetrisRepoSize.text =
+                ctx.getString(R.string.repo_size, model.size)
+
             v.rowTetrisAvatar.setImageURI(model.owner.avatar_url)
 
         }
