@@ -7,7 +7,6 @@ import retrofit2.http.Query
 
 interface NetworkApi {
 
-    @Headers("application/vnd.github.v3+json")
     @GET("repositories")
     suspend fun getTetris(
         @Query("q") query: String,

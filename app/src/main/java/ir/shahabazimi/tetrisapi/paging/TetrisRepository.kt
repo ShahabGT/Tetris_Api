@@ -10,8 +10,8 @@ class TetrisRepository(private val apiRepository: ApiRepository) {
     fun getTetris()=
         Pager(
             config = PagingConfig(
-                pageSize = 50,
-                maxSize = 150,
+                pageSize = 30,
+                maxSize = 100,
                 enablePlaceholders = false
             ),
             pagingSourceFactory = {PairPagingSource(apiRepository)}

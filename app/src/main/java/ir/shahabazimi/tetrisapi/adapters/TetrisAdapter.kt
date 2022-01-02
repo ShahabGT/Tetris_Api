@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ir.shahabazimi.tetrisapi.databinding.TetrisRowBinding
 import ir.shahabazimi.tetrisapi.models.TetrisItem
 
-class TetrisAdapter() : PagingDataAdapter<TetrisItem, TetrisAdapter.ViewHolder>(PAIR_COMPARATOR) {
+class TetrisAdapter : PagingDataAdapter<TetrisItem, TetrisAdapter.ViewHolder>(PAIR_COMPARATOR) {
     companion object {
         private val PAIR_COMPARATOR = object : DiffUtil.ItemCallback<TetrisItem>() {
             override fun areItemsTheSame(oldItem: TetrisItem, newItem: TetrisItem): Boolean {

@@ -18,7 +18,6 @@ class TetrisLoadStateAdapter(private val retry: () -> Unit) :
         }
 
         fun bind(loadState: LoadState) {
-            v.rowPairsError.text = "error"
             when (loadState) {
                 is LoadState.Loading -> {
                     v.rowPairsError.visibility = View.GONE
@@ -26,6 +25,7 @@ class TetrisLoadStateAdapter(private val retry: () -> Unit) :
                     v.rowPairsLoading.visibility = View.VISIBLE
                 }
                 is LoadState.Error -> {
+                    v.rowPairsError.text = loadState.error.toString()
                     v.rowPairsError.visibility = View.VISIBLE
                     v.rowPairsRetry.visibility = View.VISIBLE
                     v.rowPairsLoading.visibility = View.GONE

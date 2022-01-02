@@ -6,7 +6,7 @@ import ir.shahabazimi.tetrisapi.models.TetrisItem
 import ir.shahabazimi.tetrisapi.network.ApiRepository
 import ir.shahabazimi.tetrisapi.network.Resource
 
-private const val PAGE = 0
+private const val PAGE = 1
 
 class PairPagingSource(private val apiRepository: ApiRepository) :
     PagingSource<Int, TetrisItem>() {
@@ -16,8 +16,8 @@ class PairPagingSource(private val apiRepository: ApiRepository) :
             is Resource.Success -> {
                 LoadResult.Page(
                     data = res.value.items,
-                    nextKey = if (res.value.items.isNullOrEmpty()) null else position + params.loadSize,
-                    prevKey = if (position == PAGE) null else position - params.loadSize
+                    nextKey = if (res.value.items.isNullOrEmpty()) null else position + 1,
+                    prevKey = if (position == PAGE) null else position - 1
                 )
             }
             is Resource.Failure -> {
