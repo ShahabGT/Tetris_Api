@@ -29,6 +29,14 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    dependenciesInfo {
+        includeInApk false
+        includeInBundle false
+    }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
@@ -56,6 +64,7 @@ dependencies {
     //jetpack navigation component
     implementation 'androidx.navigation:navigation-fragment-ktx:2.4.0-rc01'
     implementation 'androidx.navigation:navigation-ui-ktx:2.4.0-rc01'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     testImplementation 'junit:junit:'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
