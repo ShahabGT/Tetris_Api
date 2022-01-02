@@ -7,14 +7,14 @@ import ir.shahabazimi.tetrisapi.network.ApiRepository
 
 class TetrisRepository(private val apiRepository: ApiRepository) {
 
-    fun getTetris()=
+    fun getTetris() =
         Pager(
             config = PagingConfig(
                 pageSize = 30,
                 maxSize = 100,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = {PairPagingSource(apiRepository)}
+            pagingSourceFactory = { PairPagingSource(apiRepository) }
         ).liveData
 
 }

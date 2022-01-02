@@ -2,36 +2,23 @@ package ir.shahabazimi.tetrisapi.ui
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.paging.LoadState
+import androidx.fragment.app.Fragment
 import dagger.android.support.AndroidSupportInjection
-import ir.shahabazimi.tetrisapi.R
 import ir.shahabazimi.tetrisapi.adapters.TetrisAdapter
 import ir.shahabazimi.tetrisapi.adapters.TetrisLoadStateAdapter
 import ir.shahabazimi.tetrisapi.databinding.FragmentTetrisBinding
-import ir.shahabazimi.tetrisapi.network.ApiRepository
-import ir.shahabazimi.tetrisapi.network.NetworkApi
-import ir.shahabazimi.tetrisapi.network.RemoteDataSource
 import ir.shahabazimi.tetrisapi.viewmodels.TetrisViewModel
-import ir.shahabazimi.tetrisapi.viewmodels.ViewModelFactory
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class TetrisFragment : Fragment() {
 
-    private lateinit var b:FragmentTetrisBinding
-   // private lateinit var viewModel: TetrisViewModel
-    @Inject lateinit var viewModel: TetrisViewModel
-    private lateinit var adapter: TetrisAdapter
+    private lateinit var b: FragmentTetrisBinding
+    @Inject
+    lateinit var viewModel: TetrisViewModel
+    private lateinit var tetrisAdapter: TetrisAdapter
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -42,7 +29,7 @@ class TetrisFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        b= FragmentTetrisBinding.inflate(inflater, container, false)
+        b = FragmentTetrisBinding.inflate(inflater, container, false)
         return b.root
     }
 
@@ -51,18 +38,17 @@ class TetrisFragment : Fragment() {
         init()
     }
 
-    private fun init(){
-
-        adapter=TetrisAdapter()
-        b.tetrisRecycler.setHasFixedSize(true)
-        b.tetrisRecycler.adapter=adapter.withLoadStateFooter(
-            footer = TetrisLoadStateAdapter { adapter.retry() }
-        )
+    private fun init() {
+        tetrisAdapter = TetrisAdapter()
+        b.tetrisRecycler.apply {
+            setHasFixedSize(true)
+            adapter = tetrisAdapter.withLoadStateFooter(
+                footer = TetrisLoadStateAdapter { tetrisAdapter.retry() }
+            )
+        }
 
         viewModel.tetrisResponse.observe(viewLifecycleOwner, {
-            adapter.submitData(viewLifecycleOwner.lifecycle, it)
+            tetrisAdapter.submitData(viewLifecycleOwner.lifecycle, it)
         })
-
     }
-
 }

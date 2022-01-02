@@ -8,14 +8,11 @@ import ir.shahabazimi.tetrisapi.paging.TetrisRepository
 import javax.inject.Inject
 
 class TetrisViewModel @Inject constructor(
-apiRepository: ApiRepository
+    apiRepository: ApiRepository
 ) :
     ViewModel() {
     private val tetrisRepository =
         TetrisRepository(apiRepository)
-
-//    private val _tetrisRepository: MutableLiveData<Resource<RodiniaUpdateProto.GetWalletTransactionsResponse>> =
-//        MutableLiveData()
 
     val tetrisResponse = tetrisRepository.getTetris().cachedIn(viewModelScope)
 

@@ -8,5 +8,5 @@ import ir.shahabazimi.tetrisapi.ui.TetrisFragment
 abstract class TetrisFragmentModule {
 
     @ContributesAndroidInjector
-    abstract fun contributesTetrisFragmentInjector():TetrisFragment
+    abstract fun contributesTetrisFragmentInjector(): TetrisFragment
 }

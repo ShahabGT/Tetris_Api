@@ -10,7 +10,7 @@ sealed class Resource<out T> {
         val errorCode: Int?,
         val errorBody: ResponseBody?,
         val throwable: Throwable?
-    ): Resource<Nothing>()
+    ) : Resource<Nothing>()
 
 
 }

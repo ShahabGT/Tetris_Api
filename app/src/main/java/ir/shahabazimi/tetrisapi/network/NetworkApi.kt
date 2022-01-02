@@ -2,7 +2,6 @@ package ir.shahabazimi.tetrisapi.network
 
 import ir.shahabazimi.tetrisapi.models.TetrisResponse
 import retrofit2.http.GET
-import retrofit2.http.Headers
 import retrofit2.http.Query
 
 interface NetworkApi {

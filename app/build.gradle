@@ -45,13 +45,11 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.0'
 
-
     //design
     implementation 'com.airbnb.android:lottie:4.2.2'
     implementation 'com.google.android.material:material:1.6.0-alpha01'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
     implementation 'com.facebook.fresco:fresco:2.6.0'
-
 
     //jetpack navigation component
     implementation 'androidx.navigation:navigation-fragment-ktx:2.4.0-rc01'
@@ -80,7 +78,4 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:2.40.5"
     kapt "com.google.dagger:dagger-android-processor:2.40.5"
 
-    testImplementation 'junit:junit:'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
