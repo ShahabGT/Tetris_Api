@@ -1,5 +1,6 @@
 package ir.shahabazimi.tetrisapi.ui
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
+import dagger.android.support.AndroidSupportInjection
 import ir.shahabazimi.tetrisapi.R
 import ir.shahabazimi.tetrisapi.adapters.TetrisAdapter
 import ir.shahabazimi.tetrisapi.adapters.TetrisLoadStateAdapter
@@ -22,12 +24,19 @@ import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class TetrisFragment : Fragment() {
 
     private lateinit var b:FragmentTetrisBinding
-    private lateinit var viewModel: TetrisViewModel
+   // private lateinit var viewModel: TetrisViewModel
+    @Inject lateinit var viewModel: TetrisViewModel
     private lateinit var adapter: TetrisAdapter
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        AndroidSupportInjection.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,16 +52,12 @@ class TetrisFragment : Fragment() {
     }
 
     private fun init(){
-        val factory = ViewModelFactory(
-            ApiRepository(RemoteDataSource().getApi(NetworkApi::class.java)),
-        )
+
         adapter=TetrisAdapter()
         b.tetrisRecycler.setHasFixedSize(true)
         b.tetrisRecycler.adapter=adapter.withLoadStateFooter(
             footer = TetrisLoadStateAdapter { adapter.retry() }
         )
-
-        viewModel = ViewModelProvider(this, factory).get(TetrisViewModel::class.java)
 
         viewModel.tetrisResponse.observe(viewLifecycleOwner, {
             adapter.submitData(viewLifecycleOwner.lifecycle, it)

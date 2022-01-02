@@ -5,8 +5,9 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import ir.shahabazimi.tetrisapi.network.ApiRepository
 import ir.shahabazimi.tetrisapi.paging.TetrisRepository
+import javax.inject.Inject
 
-class TetrisViewModel(
+class TetrisViewModel @Inject constructor(
 apiRepository: ApiRepository
 ) :
     ViewModel() {

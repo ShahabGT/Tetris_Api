@@ -1,7 +1,9 @@
 package ir.shahabazimi.tetrisapi.network
 
+import javax.inject.Inject
 
-class ApiRepository(private val api: NetworkApi) : BaseRepository() {
+
+class ApiRepository @Inject constructor(private val api: NetworkApi) : BaseRepository() {
 
 
     suspend fun getTetris(page:Int,size:Int) = safeApiCall {

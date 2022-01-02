@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -71,6 +72,13 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.4.0-rc01'
     implementation 'androidx.navigation:navigation-ui-ktx:2.4.0-rc01'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    //dependency injection
+    implementation "com.google.dagger:dagger:2.40.5"
+    implementation "com.google.dagger:dagger-android:2.40.5"
+    implementation "com.google.dagger:dagger-android-support:2.40.5"
+    kapt "com.google.dagger:dagger-compiler:2.40.5"
+    kapt "com.google.dagger:dagger-android-processor:2.40.5"
 
     testImplementation 'junit:junit:'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
