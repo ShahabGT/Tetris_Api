@@ -1,6 +1,6 @@
 package ir.shahabazimi.tetrisapi.models
 
-data class Item(
+data class TetrisItem(
     val allow_forking: Boolean,
     val archive_url: String,
     val archived: Boolean,
