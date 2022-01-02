@@ -1,12 +1,15 @@
 package ir.shahabazimi.tetrisapi.adapters
 
+import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import ir.shahabazimi.tetrisapi.R
 import ir.shahabazimi.tetrisapi.databinding.TetrisRowBinding
 import ir.shahabazimi.tetrisapi.models.TetrisItem
+import reactor.util.context.Context
 
 class TetrisAdapter : PagingDataAdapter<TetrisItem, TetrisAdapter.ViewHolder>(PAIR_COMPARATOR) {
     companion object {
@@ -23,13 +26,24 @@ class TetrisAdapter : PagingDataAdapter<TetrisItem, TetrisAdapter.ViewHolder>(PA
 
     inner class ViewHolder(private val v: TetrisRowBinding) : RecyclerView.ViewHolder(v.root) {
         fun bind(model: TetrisItem) {
-            v.rowTetrisId.text = model.id.toString()
+            v.rowTetrisName.text = model.name
+            v.rowTetrisLoginName.text = v.root.context.getString(R.string.repo_dev,model.owner.login)
+            v.rowTetrisRepoSize.text = v.root.context.getString(R.string.repo_size,model.size)
+            v.rowTetrisAvatar.setImageURI(model.owner.avatar_url)
 
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ViewHolder(TetrisRowBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder(
+            TetrisRowBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
+
+    }
 
     override fun onBindViewHolder(h: ViewHolder, position: Int) {
         val model = getItem(position)

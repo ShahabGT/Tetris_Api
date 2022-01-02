@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Tetris Api</string>
+    <string name="repo_size">Repository Size: %d</string>
+    <string name="repo_dev">By: %s</string>
 </resources>
