@@ -7,7 +7,7 @@ import ir.shahabazimi.tetrisapi.network.ApiRepository
 
 class TetrisRepository(private val apiRepository: ApiRepository) {
 
-    fun getPairs()=
+    fun getTetris()=
         Pager(
             config = PagingConfig(
                 pageSize = 50,

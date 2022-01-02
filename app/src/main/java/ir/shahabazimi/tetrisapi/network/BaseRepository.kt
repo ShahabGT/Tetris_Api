@@ -7,7 +7,7 @@ import retrofit2.HttpException
 abstract class BaseRepository {
 
     suspend fun <T> safeApiCall(
-            apiCall: suspend () -> T
+        apiCall: suspend () -> T
     ): Resource<T> {
         return withContext(Dispatchers.IO) {
             try {
@@ -17,9 +17,10 @@ abstract class BaseRepository {
                     is HttpException -> Resource.Failure(
                         false,
                         throwable.code(),
-                        throwable.response()?.errorBody()
+                        throwable.response()?.errorBody(),
+                        throwable
                     )
-                    else -> Resource.Failure(true, null, null)
+                    else -> Resource.Failure(true, null, null, null)
                 }
             }
         }
